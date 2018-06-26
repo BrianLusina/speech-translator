@@ -1,4 +1,4 @@
-package com.speechtranslator
+package com.speechtranslator.ui
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle

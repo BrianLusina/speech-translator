@@ -25,3 +25,14 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+    koin_version = "0.9.3"
+    support_version = "27.1.1"
+    constraint_version = "1.1.2"
+    aws_version = "2.6.23"
+
+    jUnit_version = "4.12"
+    runner_version = "1.0.2"
+    espresso_version = "3.0.2"
+}
