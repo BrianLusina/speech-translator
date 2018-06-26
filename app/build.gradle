@@ -42,6 +42,8 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$support_version"
     implementation "com.android.support.constraint:constraint-layout:$constraint_version"
 
+    implementation "org.jetbrains.anko:anko-commons:$anko_version"
+
     // Dependency Management
     implementation "org.koin:koin-android:$koin_version"
     implementation "org.koin:koin-android-architecture:$koin_version"

@@ -31,6 +31,7 @@ ext {
     support_version = "27.1.1"
     constraint_version = "1.1.2"
     aws_version = "2.6.23"
+    anko_version = "0.10.5"
 
     jUnit_version = "4.12"
     runner_version = "1.0.2"
