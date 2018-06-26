@@ -75,4 +75,9 @@ class MainActivity : AppCompatActivity(), MainView, View.OnClickListener {
             }
         }
     }
+
+    override fun onDestroy() {
+        presenter.onStop()
+        super.onDestroy()
+    }
 }

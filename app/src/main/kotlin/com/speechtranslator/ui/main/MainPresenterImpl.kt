@@ -1,11 +1,11 @@
 package com.speechtranslator.ui.main
 
-import com.speechtranslator.data.aws.AWSTranslateService
+import com.speechtranslator.data.DataManager
 import com.speechtranslator.ui.AbstractPresenter
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
-class MainPresenterImpl(val awsTranslateService: AWSTranslateService, mainView: MainView) :
+class MainPresenterImpl(val dataManager: DataManager, override var view: MainView) :
         AbstractPresenter<MainView, MainPresenter>(), MainPresenter {
 
     override fun onSpeechRecognizerAvailable() {
@@ -18,7 +18,7 @@ class MainPresenterImpl(val awsTranslateService: AWSTranslateService, mainView: 
 
     override fun onTranslateSpeech(speech: String) {
         doAsync {
-            awsTranslateService.translate(speech) {
+            dataManager.translateText(speech) {
                 val translation = it
                 uiThread {
                     view.displayTranslatedText(translation)

@@ -1,5 +1,7 @@
 package com.speechtranslator.di
 
+import com.speechtranslator.data.DataManager
+import com.speechtranslator.data.DataManagerImpl
 import com.speechtranslator.data.aws.AWSService
 import com.speechtranslator.data.aws.AWSTranslateService
 import com.speechtranslator.di.Params.MAIN_VIEW
@@ -15,6 +17,10 @@ val appModules : Module = applicationContext {
 
 val mainModules : Module = applicationContext {
     factory { params -> MainPresenterImpl(get(), params[MAIN_VIEW]) as MainPresenter }
+}
+
+val dataModules = applicationContext {
+    factory { DataManagerImpl(get()) as DataManager}
 }
 
 object Params{

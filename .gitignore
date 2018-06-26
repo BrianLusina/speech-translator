@@ -2,6 +2,7 @@
 .gradle
 .idea/
 /local.properties
+aws.json
 keystores/
 .DS_Store
 /build
