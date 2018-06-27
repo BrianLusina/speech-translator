@@ -3,7 +3,9 @@
 .idea/
 /local.properties
 aws.json
-keystores/
+*.jks
+gradle.properties
+keystores/keystore.properties
 .DS_Store
 /build
 /captures

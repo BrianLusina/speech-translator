@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">SpeechTranslator</string>
     <string name="btn_start_recognizer">Record</string>
     <string name="txt_recorded">Recorded text will appear here</string>
     <string name="txt_translated">Translated text will appear here</string>

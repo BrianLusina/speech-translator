@@ -1,5 +1,7 @@
 # Speech Translator
 
+[![Build status](https://build.appcenter.ms/v0.1/apps/930b811e-4f76-40aa-8ab4-7398cbc8b5c4/branches/master/badge)](https://appcenter.ms)
+
 Small and basic speech translator Android app that uses AWS Speech recognition service to translate text.
 
 ## Getting started
@@ -163,7 +165,8 @@ Ensure this is not pushed to an open VCS, add it to [.gitignore](./.gitignore) i
 2. [Koin](https://insert-koin.io) Used for dependency injection
 3. [AWS Mobile](https://docs.aws.amazon.com/aws-mobile/latest/developerguide/getting-started.html) Used to configure and interact with AWS services
 4. [AWS Sdk](https://github.com/aws/aws-sdk-android) - Library used to interact with AWS services
-4. [Anko Commons](https://github.com/Kotlin/anko) - used to add _sugar_ to common Android boilerplate code.
+5. [Anko Commons](https://github.com/Kotlin/anko) - used to add _sugar_ to common Android boilerplate code.
+6. [App Center](https://appcenter.ms) - for automated deployment and analytics
 
 ## Versioning
 
