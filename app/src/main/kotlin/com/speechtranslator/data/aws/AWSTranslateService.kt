@@ -11,11 +11,11 @@ class AWSTranslateService(awsService: AWSService) {
     /**
      * Translate some text, returning it in a callback
      */
-    fun translate(s: String, callback: (String) -> Unit) {
+    fun translate(textToTranslate: String, callback: (String) -> Unit, errorCallBack: (Exception?) -> Unit) {
         val translateRequest = TranslateTextRequest().apply {
             sourceLanguageCode = "en"
             targetLanguageCode = "es"
-            text = s
+            text = textToTranslate
         }
 
         translateClient.translateTextAsync(translateRequest, object : AsyncHandler<TranslateTextRequest, TranslateTextResult> {
@@ -23,7 +23,9 @@ class AWSTranslateService(awsService: AWSService) {
                 callback(result!!.translatedText)
             }
 
-            override fun onError(exception: Exception?) {}
+            override fun onError(exception: Exception?) {
+                errorCallBack(exception)
+            }
         })
     }
 }

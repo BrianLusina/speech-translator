@@ -63,6 +63,10 @@ class MainActivity : AppCompatActivity(), MainView, View.OnClickListener {
         text_translated.text = translation
     }
 
+    override fun displayError() {
+
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == requestSpeechRecognizerCode) {
