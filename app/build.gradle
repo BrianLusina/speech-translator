@@ -1,9 +1,31 @@
 apply plugin: "com.android.application"
 apply plugin: "kotlin-android"
 apply plugin: "kotlin-android-extensions"
+apply plugin: 'com.github.triplet.play'
+
+/**
+ * Gets the release track to use for deployment
+ * Release tracks are either "alpha", "beta", "production", "rollout"
+ * */
+def getReleaseTrack = { ->
+    try{
+        Properties properties = new Properties()
+        properties.load(new FileInputStream("gradle.properties"))
+        return Integer.parseInt(properties.getProperty("RELEASE_TRACK"))
+    }catch (ignored){
+        return "beta"
+    }
+}
 
 android {
     def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    playAccountConfigs {
+        defaultAccountConfig {
+            serviceAccountEmail = globalConfiguration["serviceAccountEmail"]
+            jsonFile = globalConfiguration["jsonKeyFile"]
+        }
+    }
 
     compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
     defaultConfig {
@@ -61,6 +83,15 @@ android {
             java.srcDirs += "src/androidTest/kotlin"
         }
     }
+}
+
+// configurations for deployment
+play {
+    jsonFile = rootProject.ext.jsonKeyFile
+    track = getReleaseTrack()
+    untrackOld = true
+    errorOnSizeLimit = false
+    uploadImages = true
 }
 
 dependencies {

@@ -6,6 +6,7 @@ aws.json
 *.jks
 gradle.properties
 keystores/keystore.properties
+keystores/*.json
 .DS_Store
 /build
 /captures

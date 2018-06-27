@@ -7,6 +7,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.github.triplet.gradle:play-publisher:1.2.2'
     }
 }
 
@@ -21,15 +22,54 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
+/**
+ * Gets the service account email gradle.properties file, Ensure that you have a
+ * gradle.properties file in root project directory
+ * */
+def getServiceAccountKey = { ->
+    try {
+        Properties properties = new Properties()
+        properties.load(new FileInputStream("gradle.properties"))
+        return properties.getProperty("SERVICE_ACCOUNT_EMAIL")
+    } catch (Exception ignored) {
+        return ""
+    }
+}
+
+def getKeyStoreFile = { ->
+    try {
+        Properties properties = new Properties()
+        properties.load(new FileInputStream("gradle.properties"))
+        def file = roperties.getProperty("KEYSTORE_PROPERTIES_FILE")
+        return rootProject.file(file)
+    } catch (Exception ignored) {
+        return rootProject.file("keystores/keystore.properties")
+    }
+}
+
+def getJsonKeyFile = { ->
+    try {
+        Properties properties = new Properties()
+        properties.load(new FileInputStream("gradle.properties"))
+        def file = properties.getProperty("JSON_KEY_FILE")
+        return rootProject.file(file)
+    } catch (Exception ignored){
+        return rootProject.file("keystores/speech-translator-api.json")
+    }
+}
+
 ext {
     androidBuildToolsVersion = "27.0.3"
     androidMinSdkVersion = 15
     androidTargetSdkVersion = 27
     androidCompileSdkVersion = 27
 
-    keystorePropertiesFile = rootProject.file("keystores/keystore.properties")
+    keystorePropertiesFile = getKeyStoreFile()
     keystoreProperties = new Properties()
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+    serviceAccountEmail = getServiceAccountKey()
+    jsonKeyFile = getJsonKeyFile()
 
     koin_version = "0.9.3"
     support_version = "27.1.1"

@@ -159,6 +159,10 @@ Enter the missing fields(in angle <> brackets) as from above, the <YOUR_ACCOUNT_
 
 Ensure this is not pushed to an open VCS, add it to [.gitignore](./.gitignore) if it is not already there.
 
+## Deployment
+
+Deployment has been automated
+
 ## Built With
 
 1. [Kotlin](https://kotlinlang.org/) Source language
