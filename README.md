@@ -153,7 +153,7 @@ The values in <> brackets are what we need to allow the aws sdk communicate with
 }
 ```
 
-Enter the missing fields(in angle <> brackets) as from above, the <YOUR_ACCOUNT_ID> is the 12 digit number for your account — available in the top banner of the AWS console, which can be found [here]().
+Enter the missing fields(in angle <> brackets) as from above, the <YOUR_ACCOUNT_ID> is the 12 digit number for your account — available in the top banner of the AWS console, which can be found [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/console_account-alias.html).
 
 Ensure this is not pushed to an open VCS, add it to [.gitignore](./.gitignore) if it is not already there.
 
