@@ -62,7 +62,7 @@ function setUpAwsJsonFile {
     fi
 }
 
-# set the Google Service API json file to the speech-translator-api.json file in the keystores/ directory
+# set the Google Service API json file to the speech-translator-api.json file in the keystores/ dir
 function setUpGoogleServicesJsonFile {
     echo "google services json file should exist $GOOGLE_SERVICE_JSON_FILE"
 
