@@ -1,6 +1,7 @@
 # Speech Translator
 
 [![Build status](https://build.appcenter.ms/v0.1/apps/930b811e-4f76-40aa-8ab4-7398cbc8b5c4/branches/master/badge)](https://appcenter.ms)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a1a1e4d6177542018044165c4ada5027)](https://www.codacy.com/app/BrianLusina/speech-translator?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=BrianLusina/speech-translator&amp;utm_campaign=Badge_Grade)
 
 Small and basic speech translator Android app that uses AWS Speech recognition service to translate text.
 
@@ -159,9 +160,64 @@ Enter the missing fields(in angle <> brackets) as from above, the <YOUR_ACCOUNT_
 
 Ensure this is not pushed to an open VCS, add it to [.gitignore](./.gitignore) if it is not already there.
 
+After you have AWS setup, now we configure the application build setup. You will need a couple of things:
+
+1. __gradle.properties__ file
+
+This will be used to configure the application, providing variables that can be used in the application on build or used by Gradle for other settings
+
+An example file:
+
+```properties
+APP_CENTER_KEY=<APP_CENTER>
+RELEASE_TRACK=<PREFERRED_RELEASE_TRACK>
+SERVICE_ACCOUNT_EMAIL=<SERVICE_ACCOUNT_EMAIL>
+KEYSTORE_PROPERTIES_FILE=<KEYSTORE_PROPERTIES_FILE>
+JSON_KEY_FILE=<JSON_KEY_FILE>
+```
+
+A couple of things to note here:
+
+- `APP_CENTER_KEY` is the api key from [App Center](https://appcenter.ms). You can configure this if you are using App Center.
+
+- `RELEASE_TRACK` specifies the preferred track to release the application to on PlayStore, refer to [this](https://github.com/Triple-T/gradle-play-publisher) for more information, a reasonable default has been set if this is missing.
+
+- `SERVICE_ACCOUNT_EMAIL` is the Google Play Services Account Email that will be used to automate the deployment of the application to Google Play Store. this is useful in a CI/CD setup, this defaults to an empty string, if not available.
+Refer to [this](https://github.com/codepath/android_guides/wiki/Automating-Publishing-to-the-Play-Store) for more information.
+
+- `KEYSTORE_PROPERTIES_FILE`
+
+This specifies the path to the keystore properties file, an example has been provided [here](./keystores/keystore.example.properties)
+
+- `JSON_KEY_FILE`  
+
+JSON key file species the path to the json file that will be used by Google Play Services API to authorize the publishing of the application on PlayStore. Refer to [this](https://github.com/codepath/android_guides/wiki/Automating-Publishing-to-the-Play-Store) for more information.
+
+2. __keystore.properties__ file
+
+Create a keystore.properties file in the [keystores](./keystores) directory following the format provided by [this](./keystores/keystore.example.properties)
+
+3. __google_play_api_json__ file
+
+This is a JSON file with the credentials provided to allow automated publishing to PlayStore. Create this file in the [keystores](./keystores) directory and name it `speech-translator-api.json`, paste the credentials you get from creating the service account email. Refer to [this](https://github.com/codepath/android_guides/wiki/Automating-Publishing-to-the-Play-Store) for more information
+
 ## Deployment
 
-Deployment has been automated
+There are several ways to deploy the application, either through a CI or locally, either way, you will need a [keystore](https://developer.android.com/studio/publish/app-signing) file.
+
+First, create a keystore file, following the instructions outlined [here](https://developer.android.com/studio/publish/app-signing).
+
+Ensure you name the keystore file __speechTranslator.jks__, any other name can be used, just ensure that the `keystore.properties` file has that included as below:
+
+```properties
+keyAlias=<KEY_ALIAS>
+keyPassword=<KEY_PASSWORD>
+storeFile=<STORE_FILE_NAME>
+storePassword=<STORE_PASSWORD>
+```
+> An example of the keystore file format is available [here](./keystores/keystore.example.properties)
+
+Deployment has been automated with the [gradle play plugin](https://github.com/Triple-T/gradle-play-publisher) which will publish to PlayStore on successful builds on you CI setup. Read up more on it in the link provided.
 
 ## Built With
 
